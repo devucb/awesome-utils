@@ -24,7 +24,6 @@ jobs:
 
       - name: Build (optional)
         run: npm run build
-        if: exists('build') # Eğer script varsa çalışsın
 
       - name: Run tests
         run: npm test
