@@ -1,0 +1,30 @@
+name: PR Commenter
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            ## 🔍 Reviewer Checklist
+
+            - [ ] Değişiklikler açık ve amaca uygun mu?
+            - [ ] Kod okunabilir ve anlaşılır mı?
+            - [ ] Gerekli yerlerde yorum satırları mevcut mu?
+            - [ ] Potansiyel performans ya da güvenlik problemi var mı?
+            - [ ] Tip tanımları uygun şekilde kullanılmış mı?
+            - [ ] Tekrar eden kodlar var mı? Varsa ortaklaştırılabilir mi?
+            - [ ] PR boyutu makul mü? Parçalara bölünebilir miydi?

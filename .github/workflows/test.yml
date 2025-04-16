@@ -1,29 +1,58 @@
-name: Run Tests on test-release
+name: PR Check & Test on test-release
 
 on:
-  push:
+  pull_request:
     branches:
       - test-release
 
 jobs:
-  test:
+  validate-branch-name:
+    name: 🚦 Stage: Validation - Branch Name Check
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4 # v4 daha güncel
+      - name: 🔍 Validate Branch Name Format
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          echo "🔍 Checking branch name: $BRANCH_NAME"
 
-      - name: Use Node.js 18
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|refactor|chore|docs|test)\/[A-Z]+-[0-9]+\/[a-z0-9\-]+$ ]]; then
+            echo "❌ Invalid branch name!"
+            echo "Branch name must follow the format:"
+            echo "<type>/<TICKET-ID>/<description> (e.g. feature/RAP-123/login-screen)"
+            exit 1
+          fi
+
+          echo "✅ Branch name format is valid."
+
+  install-dependencies:
+    name: 🚧 Stage: Install - Dependencies
+    runs-on: ubuntu-latest
+    needs: validate-branch-name
+    steps:
+      - name: 📦 Checkout Code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20.8.1
-          cache: 'npm' # npm cache aktif, daha hızlı çalışır
+          cache: 'npm'
 
-      - name: Install dependencies
+      - name: 📥 Install Dependencies
         run: npm ci
 
-      - name: Build (optional)
+  build-project:
+    name: 🏗️ Stage: Build - Project
+    runs-on: ubuntu-latest
+    needs: install-dependencies
+    steps:
+      - name: 🔨 Build Project
         run: npm run build
 
-      - name: Run tests
+  run-tests:
+    name: 🧪 Stage: Test - Run Unit Tests
+    runs-on: ubuntu-latest
+    needs: build-project
+    steps:
+      - name: 🧪 Run Tests
         run: npm test
