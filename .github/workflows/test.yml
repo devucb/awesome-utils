@@ -1,29 +1,43 @@
-name: Run Tests on test-release
+name: PR Check & Test on test-release
 
 on:
-  push:
+  pull_request:
     branches:
       - test-release
 
 jobs:
-  test:
+  validate-branch-name-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4 # v4 daha güncel
+      - name: 🔍 Validate branch name format
+        run: |
+          BRANCH_NAME="${{ github.head_ref }}"
+          echo "🔍 Checking branch name: $BRANCH_NAME"
 
-      - name: Use Node.js 18
+          if [[ ! "$BRANCH_NAME" =~ ^(feature|fix|refactor|chore|docs|test)\/[A-Z]+-[0-9]+\/[a-z0-9\-]+$ ]]; then
+            echo "❌ Invalid branch name!"
+            echo "Branch name must follow the format:"
+            echo "<type>/<TICKET-ID>/<description> (e.g. feature/RAP-123/login-screen)"
+            exit 1
+          fi
+
+          echo "✅ Branch name format is valid."
+
+      - name: 📦 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🟢 Use Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20.8.1
-          cache: 'npm' # npm cache aktif, daha hızlı çalışır
+          cache: 'npm'
 
-      - name: Install dependencies
+      - name: 📥 Install dependencies
         run: npm ci
 
-      - name: Build (optional)
+      - name: 🔨 Build
         run: npm run build
 
-      - name: Run tests
+      - name: 🧪 Run tests
         run: npm test
