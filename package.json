@@ -1,25 +1,43 @@
 {
   "name": "@devucb/awesome-utils",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Simple TS Libray",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "prepare": "husky",
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "@devucb",
+  "keywords": [
+    "typescript",
+    "utility"
+  ],
+  "author": "devucb",
+  "homepage": "https://github.com/devucb/awesome-utils",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devucb/awesome-utils"
+  },
+  "bugs": {
+    "url": "https://github.com/devucb/awesome-utils/issues"
+  },
+  "contributors": [
+    "devucb <devucb01@gmail.com>"
+  ],
   "publishConfig": {
     "access": "public"
   },
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@commitlint/config-conventional": "^19.8.0",
     "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/npm": "^12.0.1",
+    "@semantic-release/release-notes-generator": "^14.0.3",
     "@types/jest": "^29.5.14",
+    "@types/node": "^22.14.1",
     "commitlint": "^19.8.0",
     "conventional-changelog-conventionalcommits": "^8.0.0",
     "cz-conventional-changelog": "^3.3.0",
