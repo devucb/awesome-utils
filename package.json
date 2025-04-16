@@ -10,6 +10,9 @@
   },
   "keywords": [],
   "author": "@devucb",
+  "publishConfig": {
+    "access": "public"
+  },
   "license": "ISC",
   "devDependencies": {
     "@commitlint/config-conventional": "^19.8.0",
