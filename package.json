@@ -1,5 +1,5 @@
 {
-  "name": "awesome-utils",
+  "name": "@devucb/awesome-utils",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
     "build": "tsc"
   },
   "keywords": [],
-  "author": "",
+  "author": "@devucb",
   "license": "ISC",
   "devDependencies": {
     "@commitlint/config-conventional": "^19.8.0",
