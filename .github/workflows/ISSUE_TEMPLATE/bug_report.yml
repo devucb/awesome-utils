@@ -1,0 +1,60 @@
+name: 🐞 Bug Report
+description: Hata bildirmek için bu formu doldurun.
+title: "[BUG] <kısa tanım>"
+labels: ["bug"]
+assignees: []
+
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Kısa Açıklama
+      description: Hatanın kısa ve öz açıklaması
+      placeholder: Örn: Giriş ekranında buton çalışmıyor
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Yeniden Oluşturma Adımları
+      description: Hatanın nasıl oluştuğunu adım adım anlatın
+      placeholder: |
+        1. Uygulamayı aç
+        2. Giriş ekranına git
+        3. 'Giriş Yap' butonuna tıkla
+        4. Hata mesajı görünür
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Beklenen Davranış
+      description: Normalde nasıl bir davranış bekleniyordu?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Gerçekleşen Davranış
+      description: Ne oldu? Hata mesajı varsa ekleyin.
+    validations:
+      required: true
+
+  - type: input
+    id: device
+    attributes:
+      label: Cihaz ve Ortam Bilgisi
+      placeholder: Örn: iPhone 13, iOS 17, v1.0.4
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Ek Bilgiler
+      description: İlgili olabileceğini düşündüğünüz başka bilgi veya ekran görüntüsü varsa ekleyin
+    validations:
+      required: false

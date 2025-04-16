@@ -1,5 +1,2 @@
 blank_issues_enabled: false
-contact_links:
-  - name: 🔧 Genel Destek veya Diğer Konular
-    url: https://github.com/senin-orgun/destek
-    about: Sorunun bir bug veya feature isteği değilse buraya tıkla
+contact_links: []

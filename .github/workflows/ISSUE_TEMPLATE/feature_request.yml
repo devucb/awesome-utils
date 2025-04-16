@@ -1,0 +1,52 @@
+name: ✨ Feature Request
+description: Yeni bir özellik önerisi veya geliştirme fikri bildirin.
+title: "[FEATURE] <özellik başlığı>"
+labels: ["enhancement"]
+assignees: []
+
+body:
+  - type: input
+    id: summary
+    attributes:
+      label: Özellik Özeti
+      description: Önerdiğiniz özelliği kısa bir şekilde özetleyin
+      placeholder: Örn: Karanlık mod desteği ekleyelim
+    validations:
+      required: true
+
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Neden Bu Özellik Gerekli?
+      description: Bu özelliğe neden ihtiyaç duyuyorsunuz? Hangi problemi çözüyor?
+      placeholder: Kullanıcılar karanlık mod eksikliği nedeniyle uygulamayı gece kullanamıyor.
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Önerilen Çözüm
+      description: Bu özelliğin nasıl çalışması gerektiğini detaylandırın
+      placeholder: |
+        - Tema seçimi ayarlar kısmına eklenmeli
+        - Sistem temasına göre otomatik geçiş yapılmalı
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatifler
+      description: Düşündüğünüz başka çözümler varsa yazın
+      placeholder: Tema ayarı yerine kullanıcıdan direkt ekran parlaklığına göre geçiş yapılabilir
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Ek Bilgiler
+      description: Ekran görüntüsü, bağlantı veya ilgili diğer bilgileri buraya ekleyebilirsiniz
+    validations:
+      required: false
